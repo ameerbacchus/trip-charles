@@ -1,0 +1,81 @@
+Algorithm for TRUMP.
+
+1. Deal 5 Cards each
+2. If Caller is Computer, choose randomly based on suits in hand.
+
+
+ALL ROUNDS OF PLAY:
+
+PLAYER 1: Randomly choose a card from hand.
+--------------------------------------------
+PLAYER 2: 
+if( Have suit on board){
+    if ( Can beat highest card){
+         playRandomToWin //any cards higher than leading card
+    }
+    else { // if you can't beat highest card 
+         playLowestCard
+    }
+
+// else if you don't have suit
+else {
+     if ( haveTrump ){
+          playLowestTrumpToWin
+     }
+     else { // don't have trump 
+          walkAside //factor in prevalence of cards in one suit
+                    //don't waste facecards.  
+     }
+--------------------------------------------
+PLAYER 3:       
+if( Have suit on board === true ){
+    if ( Can beat highest card){
+         playHighestToWin //any cards higher than leading card
+    }
+    else { // if you can't beat highest card 
+         playLowestCard
+    }
+
+// else if you don't have suit
+else {
+     if ( haveTrump ){
+          if ( is player 2 winning ) { 
+              playHighestTrumpToWin          
+          } else {
+              random (walkAside or playLowestTrumpToWin)
+          }  
+     }
+     else { // don't have trump 
+          walkAside
+     }
+--------------------------------------------
+PLAYER 4: 
+if(Have suit on board){
+    if ( player 1 is winning ){
+         playLowestCard
+    }
+    else if (can beat the winning card){
+        playLowestCardToWin
+    }
+    else{
+         playLowestCard
+    }
+}
+
+//don't have suit on board
+else if (HaveTrump){
+   if(Player 1 is winning){
+      walkAside
+   } else if (can beat the winning card) {
+      playLowestTrumpToWin
+   } else {
+      walkAside
+   }
+} 
+
+else {
+     walkAside
+}
+
+
+NOTES: walkAside has to also include playLowestTrump if all other cards have been depleted.

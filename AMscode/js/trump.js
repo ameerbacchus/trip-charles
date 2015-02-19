@@ -8,6 +8,13 @@
  * Card object
  */
 
+/*var allCards = {
+
+    'AH': {}
+};
+
+allCards['AH']*/
+
 var Card = function( value, suit ) {
     this.value = value;
     this.suit = suit;
@@ -56,16 +63,14 @@ var Deck = function(){
 
     this.deal = function(){
        var c = self.cards;
-       self.hand1= c.splice(1,13);
-       self.hand2= c.splice(1,13);
-       self.hand3= c.splice(1,13);
-       self.hand4= c.splice(1,13);
+       self.hand1= c.splice(0,13);
+       self.hand2= c.splice(0,13);
+       self.hand3= c.splice(0,13);
+       self.hand4= c.splice(0,13);
     };
 
     /* TODO: Develop more efficient way to sort array
      * This current system wastes memory, find a better way.
-     * AMSNOTE: I originally created an array containing the 4 suit arrays
-     * Which way is better?
       * */
     this.sortHand =function(hand){
         var sortedHand =[];
@@ -117,42 +122,156 @@ var Deck = function(){
             sortedHand.push(cardsClubs[i]);
         }
 
-        console.log(sortedHand);
-
         return sortedHand;
     };
 
 };
 
-
 /**
- * Init Deck and Deal
- * NOTE: Organize and move elsewhere
+ * Player Object
  */
 
-var freshDeck = new Deck();
-freshDeck.initDeck();
-freshDeck.shuffleDeck();
-freshDeck.deal();
-
-
-/**
- * trumpGame
- * Note: Actual game play? Rounds? Everything?
- */
-
-var trumpGame = function(){
+var User = function(deck){
     var self = this;
-    this.trump = "";
+    this.userHand = deck.hand1;
 
-    this.setTrump = function(suit){
-        trump =suit;
-        console.log("Trump is equal to "+ trump);
+    /*
+     this.showFive = function(){
+     for(i=0; i <5; i++){
+
+     $('#first-five-cards').append('<div class="card">  <div class="card"><img class="card-image" src="img/cardpack1/' +
+     self.userHand[i].fileName + '"/>');
+     }
+     };
+     */
+
+    this.showUserHand = function(){
+        var hand = freshDeck.sortHand(self.userHand);
+        self.userHand = hand;
+
+        for(i=0; i < self.userHand.length; i++ ){
+            $('#card-space').append('<div id="'+ self.userHand[i].id +'" class="card playable"' +
+                '><img value="'+ self.userHand[i].value +'" alt="'+ self.userHand[i].suit +'" class="card-image" src="img/cardpack1/' +
+                self.userHand[i].fileName + '"/></div></div>');
+        }
+    };
+
+    /* TODO: find more efficient way to get card from web, should be able to attach to HTML element data */
+    this.playCard = function(card, value, suit){
+
+        var fileName = suit + value + ".png";
+        var id =  "#"+ value + suit;
+        var foundCardMatch = false;
+        var c = 0;
+        var cardIndex = null;
+
+        /* TODO: legalPlayCheck */
+
+        /* Remove card from hand, and play on the board*/
+        $(card).hide();
+        $('#board').append('<div id="south-card" class="board-card"><img class="card-image" src="img/cardpack1/'+ fileName +'"/></div>');
+
+        /* Remove card from actual array */
+        while(!foundCardMatch){
+            if(self.userHand[c].fileName === fileName){
+                cardIndex = c;
+                console.log("the card is at index " + cardIndex);
+                // ?compareCard.push(self.userHand[c]);
+                self.userHand.splice(c,1);
+                foundCardMatch = true;
+            }
+            c++;
+        }
+
     }
+};
+
+/**
+ * Player Object Constructor
+ */
+var Player = function( hand, position, isUser ){
+    var self = this;
+    this.hand = hand;
+    this.isUser = isUser;
+    this.partner = "";
+    this.position = position;
+    this.firstFive = [];
+
+    this.setFirstFive = function(){
+        console.log("this works");
+        for(i=0; i <5; i++){
+            self.firstFive.push(self.hand[i]);
+        }
+        console.log(self.firstFive);
+    };
+
+    switch( this.position ){
+        case "south":
+            this.partner="north";
+            break;
+        case "north":
+            this.partner="south";
+            break;
+        case "east":
+            this.partner="west";
+        case "west":
+            this.partner="east";
+            break;
+    }
+
+
+    if(!this.isUser){
+        console.log("Player is a computer");
+        self.hand = freshDeck.sortHand(self.hand);
+    } else {
+        this.setFirstFive();
+    }
+
+
+    console.log(this.hand);
 
 };
 
 
 
-var startGame = new trumpGame();
+/**
+ * trumpGame Object
+ */
 
+var TrumpGame = function(deck){
+    var self = this;
+    this.trump = "spades";
+    this.deck = deck;
+    this.playerBooks = 0;
+    this.opponentsBook = 0;
+    this.gameOver = false;
+    this.winner = null;
+
+    /* */
+    self.deck.initDeck();
+    self.deck.shuffleDeck();
+    self.deck.deal();
+
+/* IMPORTANT   */
+    this.setTrump = function(suit){
+/*        trump =suit;
+        console.log("Trump is equal to "+ trump);*/
+        $('.trump-title').append(self.trump);
+    }
+
+
+
+
+};
+
+/* Init Deck */
+var freshDeck = new Deck();
+/* Init Game */
+var startGame = new TrumpGame(freshDeck);
+/* Init Human Player */
+var humanPlayer = new User(freshDeck);
+
+var southPlayer = new Player(freshDeck.hand1, "south", true);
+var westPlayer = new Player(freshDeck.hand2, "west", false);
+var northPlayer = new Player(freshDeck.hand3, "north", false);
+var eastPlayer = new Player(freshDeck.hand4, "east", false);

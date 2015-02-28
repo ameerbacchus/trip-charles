@@ -5,14 +5,13 @@
     <link rel="stylesheet" type="text/css" href="css/trump.css" />
     <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 
-    <script type="text/javascript" src="js/trump.js"></script>
+    <!--<script type="text/javascript" src="js/trump.js"></script>-->
     <script type="text/javascript" src="js/trumptestcode.js"></script>
 </head>
 
 <body>
 
-<!--
-<div id="overlay">
+<!--<div id="overlay">
     <div id="trump-prompt">
         <h1>Pick your trump</h1>
         <div id="first-five-cards">
@@ -26,15 +25,14 @@
         <div id="clubs" class="trump-select-box">Clubs</div>
         <div id="diamonds" class="trump-select-box">Diamonds</div>
     </div>
-</div>
--->
+</div>-->
 
 
 <div id="game-wrapper">
 	<div id="score-space">
-       <span class="trump-title">trump /</span>
-	   <h4 class="books-score">My Books: <span name="my-books">X</span></h4>
-	   <h4 class="books-score">Opponents' Books: <span name="opponents-books">Y</span></h4>
+       <span class="trump-title">trump = </span>
+	   <h4 class="books-score">My Books: <span id="my-books">0</span></h4>
+	   <h4 class="books-score">Opponents' Books: <span id="opponents-books">0</span></h4>
 	</div>
 
     <div id="partner"><img class="fit-circle" src="img/matt.png"/></div>
@@ -50,7 +48,23 @@
 
     <div id="opponent-right"><img class="fit-circle" src="img/bushhead.png"/></div>
 
-    <div id="card-space">
+    <div id="south-player-hand" class="card-space">
+        <h5>MYHAND</h5>
+        <div class="clear-fix"></div>
+    </div>
+
+    <div id="east-player-hand" class="card-space">
+        <h5>BushheadHAND</h5>
+        <div class="clear-fix"></div>
+    </div>
+
+    <div id="north-player-hand" class="card-space">
+        <h5>MattHAND</h5>
+        <div class="clear-fix"></div>
+    </div>
+
+    <div id="west-player-hand" class="card-space">
+        <h5>BhaggieHAND</h5>
         <div class="clear-fix"></div>
     </div>
 

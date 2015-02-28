@@ -129,6 +129,7 @@ var Deck = function(){
 
 /**
  * Player Object
+ * PLACE THIS IN CONSTRUCTOR
  */
 
 var User = function(deck){
@@ -233,6 +234,12 @@ var Player = function( hand, position, isUser ){
 };
 
 
+/**
+ * allPlayers Object
+ * create players , set lead player, set teams.
+ */
+
+
 
 /**
  * trumpGame Object
@@ -248,9 +255,9 @@ var TrumpGame = function(deck){
     this.winner = null;
 
     /* */
-    self.deck.initDeck();
-    self.deck.shuffleDeck();
-    self.deck.deal();
+    this.deck.initDeck();
+    this.deck.shuffleDeck();
+    this.deck.deal();
 
 /* IMPORTANT   */
     this.setTrump = function(suit){

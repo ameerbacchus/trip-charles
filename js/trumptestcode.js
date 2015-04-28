@@ -30,7 +30,7 @@ var Deck = function(){
 
     this.initDeck = function(){
 
-        for(i=0; i<13; i++){
+        for(var i = 0; i < 13; i++){
             self.cards[i] = new Card (i+2, "hearts");
             self.cards[i+13] = new Card (i+2, "clubs");
             self.cards[i+26] = new Card (i+2, "diamonds");
@@ -40,12 +40,12 @@ var Deck = function(){
     };
 
     this.shuffleDeck = function(){
-        var n= Math.floor( 400* Math.random()+ 500);
+        var n = Math.floor(400* Math.random()+ 500);
         var card1;
         var card2;
         var temp;
 
-        for (i=0; i<n; i++){
+        for (var i = 0; i < n; i++){
             card1= Math.floor(52*Math.random());
             card2= Math.floor(52*Math.random());
             temp= self.cards[card2];
@@ -100,14 +100,14 @@ var Player = function(deck, hand, position, isHuman){
     }
 
     /* set first five*/
-    for(i=0; i <5; i++){
+    for(var i = 0; i <5; i++){
         self.firstFive.push(hand[i]);
     }
 
     this.sortHand =function(hand){
 
         /* Separate the hand into 4 suit arrays */
-        for(i = 0; i < hand.length; i++){
+        for(var i = 0; i < hand.length; i++){
 
             if( hand[i].suit === "hearts" ){
                 self.handHearts.push(hand[i]);
@@ -140,7 +140,7 @@ var Player = function(deck, hand, position, isHuman){
 
     /* show five cards to user to pick trump from */
     this.showFive = function(){
-        for(i=0; i <5; i++){
+        for(var i = 0; i <5; i++){
 
             $('#first-five-cards').append('<div class="card">  <div class="card"><img class="card-image" src="img/cardpack1/' +
                 self.firstFive[i].fileName + '"/>');
@@ -178,8 +178,8 @@ var allPlayers = function(deck){
         var c = player.playerHand;
         var x = player.position;
 
-        for(i=0; i< c.length; i++){
-           for(j=0; j < c[i].length; j++){
+        for(var i = 0; i< c.length; i++){
+           for(var j = 0; j < c[i].length; j++){
                $('#'+ x +'-player-hand').append('<div id="'+ c[i][j].id +'" class="card playable"' +
                 '><img value="'+ c[i][j].value +'" alt="'+ c[i][j].suit +'" class="card-image" src="img/cardpack1/' +
                  c[i][j].fileName + '"/></div></div>');
@@ -258,15 +258,15 @@ var allPlayers = function(deck){
             var r =  x-1;
             self.playCard(self.suitArray[r]);
             self.suitArray.splice(r,1);
-        }
+        };
 
         //pick a high card after suitInPlay is set, and remove from hand
         this.pickHighCard = function(){
-            var x = self.suitArray.length;
+//            var x = self.suitArray.length;
             var r =  0;
             self.playCard(self.suitArray[r]);
             self.suitArray.splice(r,1);
-        }
+        };
 
         //pick a random card after suitInPlay is set, and remove from hand
         this.pickRandomCard = function(){
@@ -274,7 +274,7 @@ var allPlayers = function(deck){
             var r =  Math.floor(x*Math.random());
             self.playCard(self.suitArray[r]);
             self.suitArray.splice(r,1);
-        }
+        };
 
 
         //Choose between low or high
@@ -441,7 +441,7 @@ var allPlayers = function(deck){
         } else {
 
             //there is no suit on board, player is first to play.
-            console.log("I'm the first to play, so I'm going to play randomly")
+            console.log("I'm the first to play, so I'm going to play randomly");
             this.pickRandomSuit();
             this.pickRandomCard();
 
@@ -460,7 +460,7 @@ var allPlayers = function(deck){
         console.log("userPlayCardfired");
         var self = this;
         var fileName = suit + value + ".png";
-        var id =  "#"+ value + suit;
+//        var id =  "#"+ value + suit;
         var foundCardMatch = false;
         var c= self.southPlayer.playerHand;
 
@@ -541,8 +541,8 @@ var allPlayers = function(deck){
                 $('#board').append('<div id="south-card" class="board-card"><img class="card-image" src="img/cardpack1/'+ fileName +'"/></div>');
 
                 /* Remove card from actual array */
-                for(i=0; i < c.length; i++){
-                    for(j=0; j < c[i].length; j++){
+                for(var i = 0; i < c.length; i++){
+                    for(var j = 0; j < c[i].length; j++){
                         if(c[i][j].fileName === fileName){
                             self.playedCard= c[i][j];
                             c[i].splice(j,1);
@@ -574,7 +574,7 @@ var allPlayers = function(deck){
         console.log("playNext fired");
 
         self.setPlayerIndicator(player);
-        
+
         if(!player.isHuman){
 
             setTimeout(function(){
@@ -679,7 +679,7 @@ var playRounds = function(players){
    };
 
    this.resetTurns = function(){
-        for (i=0; i < self.players.playersArray.length; i++){
+        for (var i = 0; i < self.players.playersArray.length; i++){
             self.players.playersArray[i].myTurnNumber = 0;
         }
     };
@@ -710,7 +710,7 @@ var playRounds = function(players){
 
    };
 
-   this.compareCardsPlayed= function( card, player){
+   this.compareCardsPlayed = function(card, player){
        console.log("compareCardsPlayed fired");
 
 
@@ -733,7 +733,7 @@ var playRounds = function(players){
                self.tempWinningCard = card;
                self.tempWinningPlayer = player;
            } else {
-               console.log("I lost to someone else's trump")
+               console.log("I lost to someone else's trump");
            }
 
        } else if(!self.suitOnBoard){
@@ -763,8 +763,8 @@ var playRounds = function(players){
 
        // find edge case
        } else {
-           alert("error: edge case scenario.")
-           console.log("this is an edge case the programmer did not thought of. something is either wrong, or hes stupid")
+           alert("error: edge case scenario.");
+           console.log("this is an edge case the programmer did not thought of. something is either wrong, or hes stupid");
 
        }
 
@@ -863,3 +863,5 @@ var TrumpGame = function(){
 
 /* init Trump */
 var Trump = new TrumpGame;
+
+console.log('Trump', Trump);

@@ -154,7 +154,7 @@ var Player = function(deck, hand, position, isHuman){
     /* Player init */
     this.sortHand(hand);
 
-    console.log(this.position + ' player initiated');
+//    console.log(this.position + ' player initiated');
 
 };
 
@@ -189,8 +189,8 @@ var allPlayers = function(deck){
     };
 
     this.AIplayCard = function(player){
-        console.log("AIplayCard fired / " + player.position + " is playing");
-        console.log("*********************************");
+//        console.log("AIplayCard fired / " + player.position + " is playing");
+//        console.log("*********************************");
 
         var self = this;
 
@@ -281,13 +281,13 @@ var allPlayers = function(deck){
         this.SmartPickCard = function(){
 
              if(Trump.Rounds.tempWinningPlayer.team == self.player.team){
-                 console.log("my team is winning so I'll play low");
+//                 console.log("my team is winning so I'll play low");
                  self.pickLowCard();
              } else if(self.suitArray[0].value > Trump.Rounds.tempWinningCard.value){
-                 console.log("my team is losing so I'll play high");
+//                 console.log("my team is losing so I'll play high");
                  self.pickHighCard();
              } else{
-                 console.log("can't beat that");
+//                 console.log("can't beat that");
                  self.pickLowCard();
              }
 
@@ -384,38 +384,38 @@ var allPlayers = function(deck){
 
         // MAIN AI LOGIC / Choose a smart card to play based on other cards on the board
         if(Trump.Rounds.suitOnBoard){
-            console.log("there is a suit on board and it is = "+ Trump.Rounds.suitOnBoard);
+//            console.log("there is a suit on board and it is = "+ Trump.Rounds.suitOnBoard);
             this.checkSuit(Trump.Rounds.suitOnBoard);
-            console.log("Suit in play is equal to = "+ this.suitInPlay);
+//            console.log("Suit in play is equal to = "+ this.suitInPlay);
 
             //I have cards in the suit on board and no one has cut
             if(this.suitInPlay === Trump.Rounds.suitOnBoard && !Trump.Rounds.suitWasCut){
-                console.log("I have the suit, and no one has cut, I should play High or Low based on my partner");
+//                console.log("I have the suit, and no one has cut, I should play High or Low based on my partner");
                 this.SmartPickCard();
             }
             // I have the suit on board, but someone has cut
             else if (this.suitInPlay === Trump.Rounds.suitOnBoard && Trump.Rounds.suitWasCut) {
-                console.log("Someone cut, I have the suit on board, I need to play my lowest card");
+//                console.log("Someone cut, I have the suit on board, I need to play my lowest card");
                 this.pickLowCard();
             }
             // I don't have the suit on board, and no one has cut yet
             else if(this.suitInPlay != Trump.Rounds.suitOnBoard && !Trump.Rounds.suitWasCut){
-                console.log("I don't have the suit, and no one cut yet");
+//                console.log("I don't have the suit, and no one cut yet");
 
                 if(Trump.Rounds.tempWinningPlayer.team != this.player.team){
                     this.checkSuit(Trump.trump);
-                    console.log("I don't have the suit on board and my team isn't winning");
+//                    console.log("I don't have the suit on board and my team isn't winning");
                     if(this.suitInPlay == Trump.trump){
-                        console.log("I have trump, so I'm going to play a low trump");
+//                        console.log("I have trump, so I'm going to play a low trump");
                         this.pickLowCard();
                     }
                     else{
-                        console.log("I don't have the suit on board, nor trump");
+//                        console.log("I don't have the suit on board, nor trump");
                         this.pickRandomSuit();
                         this.pickLowCard();
                     }
                 } else{
-                    console.log("My Teammate is winning so I'll just walk aside. ");
+//                    console.log("My Teammate is winning so I'll just walk aside. ");
                     this.pickRandomSuit();
                     this.pickLowCard();
                 }
@@ -423,17 +423,17 @@ var allPlayers = function(deck){
             // I don't have the suit on board, and someone else has cut
             else if(this.suitInPlay != Trump.Rounds.suitOnBoard && Trump.Rounds.suitWasCut){
                  this.checkSuit(Trump.trump);
-                console.log(" I dont have the suit on board, and someone else has cut ");
+//                console.log(" I dont have the suit on board, and someone else has cut ");
                  if(this.suitInPlay === Trump.trump && this.suitArray[0].value > Trump.Rounds.tempWinningCard.value ){
-                     console.log("I can beat the cutters trump card");
+//                     console.log("I can beat the cutters trump card");
                      this.pickHighCard();
                  } else{
-                     console.log("I can't beat the cutters trump card");
+//                     console.log("I can't beat the cutters trump card");
                      this.pickRandomSuit();
                      this.pickLowCard();
                  }
             } else {
-                console.log("unanticipated use case");
+//                console.log("unanticipated use case");
                 this.pickRandomSuit();
                 this.pickRandomCard();
             }
@@ -441,7 +441,7 @@ var allPlayers = function(deck){
         } else {
 
             //there is no suit on board, player is first to play.
-            console.log("I'm the first to play, so I'm going to play randomly");
+//            console.log("I'm the first to play, so I'm going to play randomly");
             this.pickRandomSuit();
             this.pickRandomCard();
 
@@ -450,14 +450,14 @@ var allPlayers = function(deck){
 
         self.setNextPlayerTurn(player);
 
-        console.log("AI Completed");
-        console.log("--------------------------------");
+//        console.log("AI Completed");
+//        console.log("--------------------------------");
     };
 
     //TODO: build in check to ensure user is making a legal play.
     this.userPlayCard = function(card, value, suit){
 
-        console.log("userPlayCardfired");
+//        console.log("userPlayCardfired");
         var self = this;
         var fileName = suit + value + ".png";
 //        var id =  "#"+ value + suit;
@@ -524,7 +524,7 @@ var allPlayers = function(deck){
 
         /* ensure the playerTurn has been set - NOTE: probably not a critical condition as other code should handle this */
         if(!self.playerTurn){
-            console.log("it's no one's turn at the moment, so it should probably be my turn.");
+//            console.log("it's no one's turn at the moment, so it should probably be my turn.");
             self.playerTurn = self.southPlayer;
             self.southPlayer.myTurnNumber = 1;
         }
@@ -566,12 +566,12 @@ var allPlayers = function(deck){
             alert("AYE Don't poke-poke the screen, it's not you turn");
         }
 
-        console.log("userPlayCard ending");
+//        console.log("userPlayCard ending");
 
     };
 
     this.playNext= function(player){
-        console.log("playNext fired");
+//        console.log("playNext fired");
 
         self.setPlayerIndicator(player);
 
@@ -586,7 +586,7 @@ var allPlayers = function(deck){
             // on the users turn make the cards that are playable visible.?
         }
 
-        console.log("playNext is ending");
+//        console.log("playNext is ending");
     };
 
     this.setPlayerIndicator = function(player){
@@ -606,7 +606,7 @@ var allPlayers = function(deck){
 
     this.setNextPlayerTurn= function(player){
 
-        console.log("setNextPlayerTurn fired");
+//        console.log("setNextPlayerTurn fired");
 
 
         this.turnNumber = player.myTurnNumber;
@@ -669,13 +669,13 @@ var playRounds = function(players){
 
 
    this.setSuitOnBoard = function(suit){
-        console.log(suit+ " is on board");
+//        console.log(suit+ " is on board");
         self.suitOnBoard = suit;
    };
 
    this.setCardsPlayed = function(){
        self.cardsPlayed++;
-       console.log("setCardsPlayed initiated and added to = "+ self.cardsPlayed);
+//       console.log("setCardsPlayed initiated and added to = "+ self.cardsPlayed);
    };
 
    this.resetTurns = function(){
@@ -685,7 +685,7 @@ var playRounds = function(players){
     };
 
    this.resetRound = function(){
-       console.log("round is being reset");
+//       console.log("round is being reset");
        self.winningPlayer = self.tempWinningPlayer;
        self.suitOnBoard = "";
        self.tempWinningCard ="";
@@ -711,7 +711,7 @@ var playRounds = function(players){
    };
 
    this.compareCardsPlayed = function(card, player){
-       console.log("compareCardsPlayed fired");
+//       console.log("compareCardsPlayed fired");
 
 
        // card was trump
@@ -733,7 +733,7 @@ var playRounds = function(players){
                self.tempWinningCard = card;
                self.tempWinningPlayer = player;
            } else {
-               console.log("I lost to someone else's trump");
+//               console.log("I lost to someone else's trump");
            }
 
        } else if(!self.suitOnBoard){
@@ -746,29 +746,29 @@ var playRounds = function(players){
            /* card matches suitOnBoard */
 
            if(self.tempWinningCard.suit === Trump.trump){
-              console.log("some one played trump, I lost.");
+//              console.log("some one played trump, I lost.");
            } else if(card.value > self.tempWinningCard.value){
                self.tempWinningCard = card;
                self.tempWinningPlayer = player;
-               console.log("I just beat someone else's card");
+//               console.log("I just beat someone else's card");
            } else {
-               console.log("Played the card on board, but lost");
+//               console.log("Played the card on board, but lost");
            }
 
 
        // walked aside
        }  else if(card.suit != self.suitOnBoard){
 
-           console.log("Player walked aside");
+//           console.log("Player walked aside");
 
        // find edge case
        } else {
            alert("error: edge case scenario.");
-           console.log("this is an edge case the programmer did not thought of. something is either wrong, or hes stupid");
+//           console.log("this is an edge case the programmer did not thought of. something is either wrong, or hes stupid");
 
        }
 
-       console.log("compareCardsPlayed ending, resume your normally scheduled function");
+//       console.log("compareCardsPlayed ending, resume your normally scheduled function");
    };
 
 };
@@ -787,61 +787,61 @@ var TrumpGame = function(){
     this.winner = null;
 
     /* */
-    console.log("trump started");
+//    console.log("trump started");
 
     this.deck.initDeck();
-    console.log("deck initialized");
+//    console.log("deck initialized");
 
     this.deck.shuffleDeck();
-    console.log("deck shuffled");
+//    console.log("deck shuffled");
 
     this.deck.deal();
-    console.log("deck dealed");
+//    console.log("deck dealed");
 
     this.Players = new allPlayers(this.deck);
-    console.log("players have been built");
+//    console.log("players have been built");
 
     this.Rounds = new playRounds(this.Players);
 
     /* IMPORTANT   */
     this.setTrump = function(suit){
         self.trump = suit;
-        console.log("Trump is equal to "+ self.trump);
+//        console.log("Trump is equal to "+ self.trump);
         $('.trump-title').append(self.trump);
     };
 
-    this.setPlayerBooks= function(winner){
+    this.setPlayerBooks = function(winner){
         if(winner.team ==="user"){
             self.playerBooks++;
-            console.log("you just got a book");
+//            console.log("you just got a book");
 //            alert("Mat sats : Arrite we win won chap!");
 
 
             setTimeout(function(){
                 $('.board-card').fadeOut("slow");
-                $('#my-books').replaceWith('<span id="my-books">'+ self.playerBooks +'</span>');
+                $('#my-books').text(self.playerBooks);
             },1000);
 
 
             if(self.playerBooks === 7){
-                $('#game-result').replaceWith('<h1 id="game-result">Yesss Buddy! You won!</h1>');
+            	$('#game-result').text('Yesss Buddy! You won!');
                 self.gameOver = true;
             }
 
 
-        }else if (winner.team==="opponent"){
+        } else if (winner.team==="opponent") {
             self.opponentsBooks++;
-            console.log("you just lost a book");
+//            console.log("you just lost a book");
 //            alert("Mat says: what happen chap? We lose this round");
 
             setTimeout(function(){
                 $('.board-card').fadeOut("slow");
-                $('#opponents-books').replaceWith('<span id="opponents-books">'+ self.opponentsBooks +'</span>');
+                $('#opponents-books').text(self.opponentsBooks);
             },1000);
 
 
             if(self.opponentsBooks === 7){
-                $('#game-result').replaceWith('<h1 id="game-result">Awww shucks! You lost!</h1>');
+            	$('#game-result').text('Awww shucks! You lost!');
                 self.gameOver = true;
             }
 
@@ -854,6 +854,10 @@ var TrumpGame = function(){
            $('.card-space').empty();
            $('#overlay').fadeIn();
            $('#trump-gameover').show();
+
+//           console.log('end game');
+
+           var Trump = new TrumpGame;
        },1200);
 
     };
@@ -863,5 +867,3 @@ var TrumpGame = function(){
 
 /* init Trump */
 var Trump = new TrumpGame;
-
-console.log('Trump', Trump);

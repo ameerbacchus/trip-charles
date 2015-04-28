@@ -8,7 +8,6 @@
 /**
  * Card object
  */
-
 var Card = function( value, suit ) {
     this.value = value;
     this.suit = suit;
@@ -19,24 +18,20 @@ var Card = function( value, suit ) {
 /**
  * Deck object
  */
-
 var Deck = function(){
-    var self = this;
-    this.cards=[];
-    this.hand1=[];
-    this.hand2=[];
-    this.hand3=[];
-    this.hand4=[];
+    this.cards = [];
+    this.hand1 = [];
+    this.hand2 = [];
+    this.hand3 = [];
+    this.hand4 = [];
 
     this.initDeck = function(){
-
         for(var i = 0; i < 13; i++){
-            self.cards[i] = new Card (i+2, "hearts");
-            self.cards[i+13] = new Card (i+2, "clubs");
-            self.cards[i+26] = new Card (i+2, "diamonds");
-            self.cards[i+39] = new Card (i+2, "spades");
+            this.cards[i] = new Card(i+2, "hearts");
+            this.cards[i+13] = new Card(i+2, "clubs");
+            this.cards[i+26] = new Card(i+2, "diamonds");
+            this.cards[i+39] = new Card(i+2, "spades");
         }
-
     };
 
     this.shuffleDeck = function(){
@@ -46,21 +41,20 @@ var Deck = function(){
         var temp;
 
         for (var i = 0; i < n; i++){
-            card1= Math.floor(52*Math.random());
-            card2= Math.floor(52*Math.random());
-            temp= self.cards[card2];
-            self.cards[card2]= self.cards[card1];
-            self.cards[card1]=temp;
+            card1 = Math.floor(52*Math.random());
+            card2 = Math.floor(52*Math.random());
+            temp = this.cards[card2];
+            this.cards[card2] = this.cards[card1];
+            this.cards[card1] = temp;
         }
-
     };
 
     this.deal = function(){
-        var c = self.cards;
-        self.hand1= c.splice(0,13);
-        self.hand2= c.splice(0,13);
-        self.hand3= c.splice(0,13);
-        self.hand4= c.splice(0,13);
+        var c = this.cards;
+        this.hand1 = c.splice(0,13);
+        this.hand2 = c.splice(0,13);
+        this.hand3 = c.splice(0,13);
+        this.hand4 = c.splice(0,13);
     };
 
 };
@@ -69,17 +63,14 @@ var Deck = function(){
  * Player Object
  */
 var Player = function(deck, hand, position, isHuman){
-    var self= this;
-    this.playerHand =[];
-//    this.playerHandArray=[];
-    this.handClubs =[];
-    this.handHearts=[];
-    this.handSpades=[];
-    this.handDiamonds=[];
+    this.playerHand = [];
+    this.handClubs = [];
+    this.handHearts = [];
+    this.handSpades = [];
+    this.handDiamonds = [];
     this.isHuman = isHuman;
     this.position = position;
-    this.team ="";
-//    this.isMyTurn= false;
+    this.team = '';
     this.myTurnNumber = 0;
     this.firstFive =[];
 
@@ -100,55 +91,58 @@ var Player = function(deck, hand, position, isHuman){
     }
 
     /* set first five*/
-    for(var i = 0; i <5; i++){
-        self.firstFive.push(hand[i]);
+    for (var i = 0; i < 5; i++){
+    	this.firstFive.push(hand[i]);
     }
 
-    this.sortHand =function(hand){
+    this.sortHand = function(hand){
+
+    	function ucfirst(str) {
+    		return str.charAt(0).toUpperCase() + str.slice(1);
+    	}
 
         /* Separate the hand into 4 suit arrays */
-        for(var i = 0; i < hand.length; i++){
+        for (var i = 0; i < hand.length; i++) {
+        	var card = hand[i];
 
-            if( hand[i].suit === "hearts" ){
-                self.handHearts.push(hand[i]);
-            } else if( hand[i].suit === "spades" ){
-                self.handSpades.push(hand[i]);
-            } else if( hand[i].suit === "diamonds" ){
-                self.handDiamonds.push(hand[i]);
-            } else if( hand[i].suit === "clubs" ){
-                self.handClubs.push(hand[i]);
-            }
+        	// this assigns suitHand to one of the following: this.handHearts, this.handSpades, this.handDiamonds, this.handClubs
+        	var handSuit = this['hand' + ucfirst(card.suit)];
 
+        	handSuit.push(card);
         }
 
-        /* Sort each suit array */
-        self.handHearts.sort(function(a,b){
-            return b.value - a.value;
-        });
-        self.handSpades.sort(function(a,b){
-            return b.value - a.value;
-        });
-        self.handDiamonds.sort(function(a,b){
-            return b.value - a.value;
-        });
-        self.handClubs.sort(function(a,b){
-            return b.value - a.value;
-        });
 
-        self.playerHand = [self.handHearts,self.handClubs, self.handDiamonds, self.handSpades];
+        /* Sort each suit array */
+        function sortHand(a, b) {
+        	return b.value - a.value;
+        }
+        this.handHearts.sort(sortHand);
+        this.handSpades.sort(sortHand);
+        this.handDiamonds.sort(sortHand);
+        this.handClubs.sort(sortHand);
+
+        this.playerHand = [
+            this.handHearts,
+            this.handClubs,
+            this.handDiamonds,
+            this.handSpades
+        ];
     };
 
     /* show five cards to user to pick trump from */
     this.showFive = function(){
-        for(var i = 0; i <5; i++){
-
-            $('#first-five-cards').append('<div class="card">  <div class="card"><img class="card-image" src="img/cardpack1/' +
-                self.firstFive[i].fileName + '"/>');
+    	var $firstFive = $('#first-five-cards');
+        for(var i = 0; i < 5; i++){
+            $firstFive.append(
+                '<div class="card">' +
+                '    <img class="card-image" src="img/cardpack1/' + this.firstFive[i].fileName + '"/>' +
+                '</div>'
+            );
         }
     };
 
     this.setMyTurnNumber = function(number){
-       self.myTurnNumber = number;
+    	this.myTurnNumber = number;
     };
 
     /* Player init */
@@ -162,8 +156,8 @@ var Player = function(deck, hand, position, isHuman){
 /**
  * allPlayers Object
  */
-var allPlayers = function(deck){
-    var self= this;
+var allPlayers = function(deck) {
+    var self = this;
     this.playerTurn = "";
 
     this.southPlayer = new Player(deck, deck.hand1, "south", true);
@@ -173,54 +167,35 @@ var allPlayers = function(deck){
 
     this.playersArray = [this.southPlayer, this.westPlayer, this.northPlayer, this.eastPlayer];
 
-    this.showUserHand = function(player){
-
+    this.showUserHand = function(player) {
         var c = player.playerHand;
         var x = player.position;
 
-        for(var i = 0; i< c.length; i++){
-           for(var j = 0; j < c[i].length; j++){
-               $('#'+ x +'-player-hand').append('<div id="'+ c[i][j].id +'" class="card playable"' +
-                '><img value="'+ c[i][j].value +'" alt="'+ c[i][j].suit +'" class="card-image" src="img/cardpack1/' +
-                 c[i][j].fileName + '"/></div></div>');
+        for (var i = 0; i < c.length; i++){
+           for (var j = 0; j < c[i].length; j++){
+        	   var card = c[i][j];
+               $('#'+ x +'-player-hand').append(
+                   '<div id="'+ card.id +'" class="card playable">' +
+                   '    <img value="'+ card.value +'" alt="'+ card.suit +'" class="card-image" src="img/cardpack1/' + card.fileName + '" />' +
+                   '</div>'
+               );
            }
         }
-
     };
 
     this.AIplayCard = function(player){
-//        console.log("AIplayCard fired / " + player.position + " is playing");
-//        console.log("*********************************");
-
-        var self = this;
-
+    	console.log('this', this);
         this.player = player;
         this.playerHand = player.playerHand;
         this.amtClubs = this.player.handClubs.length;
         this.amtHearts = this.player.handHearts.length;
         this.amtSpades = this.player.handSpades.length;
         this.amtDiamonds = this.player.handDiamonds.length;
-//        this.amtTrump ="";
         this.suitArray = null;
         this.suitInPlay = "";
 
-
-/*        switch(Trump.trump){
-            case "clubs":
-                this.amtTrump = this.amtClubs;
-                break;
-
-        }*/
-
-//        // Show all the cards in the suit that needs to be played, should be indexed from high to low.
-//        this.evalSuit = function (){
-//
-//            console.log(Trump.Rounds.tempWinningCard);
-//            console.log(Trump.Rounds.tempWinningPlayer);
-//        };
-
         // Check to see if you have cards in the suit on board and set to SuitArray
-        this.checkSuit= function(suit){
+        this.checkSuit = function(suit){
             switch(suit){
                 case "clubs":
                     if(self.amtClubs > 0){
@@ -372,7 +347,7 @@ var allPlayers = function(deck){
 
         //show the card on the screen and compare to see who's card is leading
         this.playCard = function(card){
-            this.cardID = "#"+card.id;
+            this.cardID = "#" + card.id;
             var position = self.player.position +"-card";
 
 //            $(this.cardID).addClass('card-image-overlay');
@@ -545,11 +520,12 @@ var allPlayers = function(deck){
                     for(var j = 0; j < c[i].length; j++){
                         if(c[i][j].fileName === fileName){
                             self.playedCard= c[i][j];
-                            c[i].splice(j,1);
+                            c[i].splice(j, 1);
                             foundCardMatch = true;
                             break;
                         }
                     }
+
                     if(foundCardMatch){
                         break;
                     }
@@ -561,38 +537,28 @@ var allPlayers = function(deck){
 
             }
 
-
         } else {
             alert("AYE Don't poke-poke the screen, it's not you turn");
         }
-
-//        console.log("userPlayCard ending");
-
     };
 
-    this.playNext= function(player){
-//        console.log("playNext fired");
-
+    this.playNext = function(player){
         self.setPlayerIndicator(player);
 
         if(!player.isHuman){
-
             setTimeout(function(){
                self.AIplayCard(player);
-            },800);
+            }, 800);
         } else {
             // TODO: alert user that it's their turn
             // maybe black out the users card when it's not their turn, and then
             // on the users turn make the cards that are playable visible.?
         }
-
-//        console.log("playNext is ending");
     };
 
     this.setPlayerIndicator = function(player){
         var position = player.position;
         var id = "#"+ position +"-player";
-      // .player-turn-indicator
 
         $("#north-player").removeClass('player-turn-indicator');
         $("#west-player").removeClass('player-turn-indicator');
@@ -601,7 +567,6 @@ var allPlayers = function(deck){
         if( position != "south"){
             $(id).addClass('player-turn-indicator');
         }
-
     };
 
     this.setNextPlayerTurn= function(player){

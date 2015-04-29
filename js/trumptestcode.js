@@ -143,7 +143,7 @@ var Player = function(deck, hand, position, isHuman) {
  * allPlayers Object
  */
 var allPlayers = function(deck) {
-    this.playerTurn = "";
+    this.playerTurn = '';
 
     this.southPlayer = new Player(deck, deck.hand1, "south", true);
     this.westPlayer = new Player(deck, deck.hand2, "west", false);
@@ -168,87 +168,87 @@ var allPlayers = function(deck) {
     };
 
     this.AIplayCard = function(player) {
-        // console.log('this', this);
-        this.player = player;
         this.playerHand = player.playerHand;
-        this.amtClubs = this.player.handClubs.length;
-        this.amtHearts = this.player.handHearts.length;
-        this.amtSpades = this.player.handSpades.length;
-        this.amtDiamonds = this.player.handDiamonds.length;
-        this.suitArray = null;
-        this.suitInPlay = "";
+
+        var amts = {
+            clubs: player.handClubs.length,
+            hearts: player.handHearts.length,
+            spades: player.handSpades.length,
+            diamonds: player.handDiamonds.length
+        };
+        var suitArray = null;
+        var suitInPlay = '';
 
         // Check to see if you have cards in the suit on board and set to
         // SuitArray
-        this.checkSuit = function(suit) {
+        var checkSuit = function(suit) {
             switch (suit) {
                 case "clubs":
-                    if (this.amtClubs > 0) {
-                        this.suitArray = player.handClubs;
-                        this.suitInPlay = "clubs";
+                    if (amts.clubs > 0) {
+                        suitArray = player.handClubs;
+                        suitInPlay = "clubs";
                     }
                     break;
 
                 case "hearts":
-                    if (this.amtHearts > 0) {
-                        this.suitArray = player.handHearts;
-                        this.suitInPlay = "hearts";
+                    if (amts.hearts > 0) {
+                        suitArray = player.handHearts;
+                        suitInPlay = "hearts";
                     }
                     break;
 
                 case "spades":
-                    if (this.amtSpades > 0) {
-                        this.suitArray = player.handSpades;
-                        this.suitInPlay = "spades";
+                    if (amts.spades > 0) {
+                        suitArray = player.handSpades;
+                        suitInPlay = "spades";
                     }
                     break;
 
                 case "diamonds":
-                    if (this.amtDiamonds > 0) {
-                        this.suitArray = player.handDiamonds;
-                        this.suitInPlay = "diamonds";
+                    if (amts.diamonds > 0) {
+                        suitArray = player.handDiamonds;
+                        suitInPlay = "diamonds";
                     }
                     break;
 
                 default:
-                    // console.log('I SHOULD NOT BE HERE');
-                    this.suitArray = null;
+                    console.log('I SHOULD NOT BE HERE');
+                    suitArray = null;
                     break;
             }
-
         };
 
         // pick a low card after suitInPlay is set, and remove from hand
-        this.pickLowCard = function() {
-            var x = this.suitArray.length;
+        var pickLowCard = function() {
+            var x = suitArray.length;
             var r = x - 1;
-            this.playCard(this.suitArray[r]);
-            this.suitArray.splice(r, 1);
+            playCard(suitArray[r]);
+            suitArray.splice(r, 1);
         };
 
         // pick a high card after suitInPlay is set, and remove from hand
-        this.pickHighCard = function() {
+        var pickHighCard = function() {
             var r = 0;
-            this.playCard(this.suitArray[r]);
-            this.suitArray.splice(r, 1);
+            playCard(suitArray[r]);
+            suitArray.splice(r, 1);
         };
 
         // pick a random card after suitInPlay is set, and remove from hand
-        this.pickRandomCard = function() {
-            var x = this.suitArray.length;
+        var pickRandomCard = function() {
+            var x = suitArray.length;
             var r = Math.floor(x * Math.random());
-            this.playCard(this.suitArray[r]);
-            this.suitArray.splice(r, 1);
+            playCard(suitArray[r]);
+            suitArray.splice(r, 1);
         };
 
         // Choose between low or high
-        this.SmartPickCard = function() {
-            if (Trump.Rounds.tempWinningPlayer.team == this.player.team) {
-                this.pickLowCard();
-            } else if (this.suitArray[0].value > Trump.Rounds.tempWinningCard.value) {
-                this.pickHighCard();
+        var SmartPickCard = function() {
+            if (Trump.Rounds.tempWinningPlayer.team == player.team) {
+                pickLowCard();
+            } else if (suitArray[0].value > Trump.Rounds.tempWinningCard.value) {
+                pickHighCard();
             } else {
-                this.pickLowCard();
+                pickLowCard();
             }
         };
 
@@ -259,7 +259,7 @@ var allPlayers = function(deck) {
          */
 
         // pick a random suit to play when no suit is on board, or suit is out of cards
-        this.pickRandomSuit = function() {
+        var pickRandomSuit = function() {
             var r = Math.floor(4 * Math.random() + 1);
             var suit = "";
 
@@ -270,52 +270,52 @@ var allPlayers = function(deck) {
              */
             switch (r) {
                 case 1:
-                    if (this.amtClubs > 0) {
+                    if (amts.clubs > 0) {
                         suit = "clubs";
-                    } else if (this.amtSpades > 0) {
+                    } else if (amts.spades > 0) {
                         suit = "spades";
-                    } else if (this.amtDiamonds > 0) {
+                    } else if (amts.diamonds > 0) {
                         suit = "diamonds";
-                    } else if (this.amtHearts > 0) {
+                    } else if (amts.hearts > 0) {
                         suit = "hearts";
                     }
 
                     break;
 
                 case 2:
-                    if (this.amtHearts > 0) {
+                    if (amts.hearts > 0) {
                         suit = "hearts";
-                    } else if (this.amtClubs > 0) {
+                    } else if (amts.clubs > 0) {
                         suit = "clubs";
-                    } else if (this.amtDiamonds > 0) {
+                    } else if (amts.diamonds > 0) {
                         suit = "diamonds";
-                    } else if (this.amtSpades > 0) {
+                    } else if (amts.spades > 0) {
                         suit = "spades";
                     }
 
                     break;
 
                 case 3:
-                    if (this.amtDiamonds > 0) {
+                    if (amts.diamonds > 0) {
                         suit = "diamonds";
-                    } else if (this.amtClubs > 0) {
+                    } else if (amts.clubs > 0) {
                         suit = "clubs";
-                    } else if (this.amtSpades > 0) {
+                    } else if (amts.spades > 0) {
                         suit = "spades";
-                    } else if (this.amtHearts > 0) {
+                    } else if (amts.hearts > 0) {
                         suit = "hearts";
                     }
 
                     // @todo -- why is there not a break here?
 
                 case 4:
-                    if (this.amtSpades > 0) {
+                    if (amts.spades > 0) {
                         suit = "spades";
-                    } else if (this.amtClubs > 0) {
+                    } else if (amts.clubs > 0) {
                         suit = "clubs";
-                    } else if (this.amtDiamonds > 0) {
+                    } else if (amts.diamonds > 0) {
                         suit = "diamonds";
-                    } else if (this.amtHearts > 0) {
+                    } else if (amts.hearts > 0) {
                         suit = "hearts";
                     }
 
@@ -325,68 +325,68 @@ var allPlayers = function(deck) {
                     break;
             }
 
-            this.checkSuit(suit);
+            checkSuit(suit);
         };
 
         // show the card on the screen and compare to see who's card is leading
-        this.playCard = function(card) {
+        var playCard = function(card) {
             this.cardID = "#" + card.id;
-            var position = this.player.position + "-card";
+            var position = player.position + "-card";
 
             // $(this.cardID).addClass('card-image-overlay');
             $('#board').append(
                     '<div id="' + position + '" class="board-card"><img class="card-image" src="img/cardpack1/'
                             + card.fileName + '"/></div>');
 
-            Trump.Rounds.compareCardsPlayed(card, this.player);
+            Trump.Rounds.compareCardsPlayed(card, player);
         };
 
         // MAIN AI LOGIC / Choose a smart card to play based on other cards on
         // the board
         if (Trump.Rounds.suitOnBoard) {
-            this.checkSuit(Trump.Rounds.suitOnBoard);
+            checkSuit(Trump.Rounds.suitOnBoard);
 
             // I have cards in the suit on board and no one has cut
-            if (this.suitInPlay === Trump.Rounds.suitOnBoard && !Trump.Rounds.suitWasCut) {
-                this.SmartPickCard();
+            if (suitInPlay === Trump.Rounds.suitOnBoard && !Trump.Rounds.suitWasCut) {
+                SmartPickCard();
 
             // I have the suit on board, but someone has cut
-            } else if (this.suitInPlay === Trump.Rounds.suitOnBoard && Trump.Rounds.suitWasCut) {
-                this.pickLowCard();
+            } else if (suitInPlay === Trump.Rounds.suitOnBoard && Trump.Rounds.suitWasCut) {
+                pickLowCard();
 
             // I don't have the suit on board, and no one has cut yet
-            } else if (this.suitInPlay != Trump.Rounds.suitOnBoard && !Trump.Rounds.suitWasCut) {
-                if (Trump.Rounds.tempWinningPlayer.team != this.player.team) {
-                    this.checkSuit(Trump.trump);
-                    if (this.suitInPlay == Trump.trump) {
-                        this.pickLowCard();
+            } else if (suitInPlay != Trump.Rounds.suitOnBoard && !Trump.Rounds.suitWasCut) {
+                if (Trump.Rounds.tempWinningPlayer.team != player.team) {
+                    checkSuit(Trump.trump);
+                    if (suitInPlay == Trump.trump) {
+                        pickLowCard();
                     } else {
-                        this.pickRandomSuit();
-                        this.pickLowCard();
+                        pickRandomSuit();
+                        pickLowCard();
                     }
                 } else {
-                    this.pickRandomSuit();
-                    this.pickLowCard();
+                    pickRandomSuit();
+                    pickLowCard();
                 }
 
             // I don't have the suit on board, and someone else has cut
-            } else if (this.suitInPlay != Trump.Rounds.suitOnBoard && Trump.Rounds.suitWasCut) {
-                this.checkSuit(Trump.trump);
-                if (this.suitInPlay === Trump.trump && this.suitArray[0].value > Trump.Rounds.tempWinningCard.value) {
-                    this.pickHighCard();
+            } else if (suitInPlay != Trump.Rounds.suitOnBoard && Trump.Rounds.suitWasCut) {
+                checkSuit(Trump.trump);
+                if (suitInPlay === Trump.trump && suitArray[0].value > Trump.Rounds.tempWinningCard.value) {
+                    pickHighCard();
                 } else {
-                    this.pickRandomSuit();
-                    this.pickLowCard();
+                    pickRandomSuit();
+                    pickLowCard();
                 }
             } else {
-                this.pickRandomSuit();
-                this.pickRandomCard();
+                pickRandomSuit();
+                pickRandomCard();
             }
 
         } else {
             // there is no suit on board, player is first to play.
-            this.pickRandomSuit();
-            this.pickRandomCard();
+            pickRandomSuit();
+            pickRandomCard();
         }
 
         this.setNextPlayerTurn(player);
@@ -399,52 +399,54 @@ var allPlayers = function(deck) {
         var foundCardMatch = false;
         var c = this.southPlayer.playerHand;
 
-        this.amtClubs = this.southPlayer.handClubs.length;
-        this.amtHearts = this.southPlayer.handHearts.length;
-        this.amtSpades = this.southPlayer.handSpades.length;
-        this.amtDiamonds = this.southPlayer.handDiamonds.length;
+        var amts = {
+            clubs: this.southPlayer.handClubs.length,
+            hearts: this.southPlayer.handHearts.length,
+            spades: this.southPlayer.handSpades.length,
+            diamonds: this.southPlayer.handDiamonds.length
+        };
 
-        this.legalCheck = true;
-        this.playedCard = "";
+        var legalCheck = true;
+        var playedCard = '';
 
         /* this function probably doesn't need to be used outside this scope */
-        this.setLegalCheck = function() {
+        var setLegalCheck = function() {
             if (suit != Trump.Rounds.suitOnBoard) {
 
                 switch (Trump.Rounds.suitOnBoard) {
                     case "clubs":
-                        if (this.amtClubs === 0) {
-                            this.legalCheck = true;
+                        if (amts.clubs === 0) {
+                            legalCheck = true;
                         } else {
-                            this.legalCheck = false;
+                            legalCheck = false;
                         }
                         break;
 
                     case "hearts":
-                        if (this.amtHearts === 0) {
-                            this.legalCheck = true;
+                        if (amts.hearts === 0) {
+                            legalCheck = true;
                         } else {
-                            this.legalCheck = false;
+                            legalCheck = false;
                         }
                         break;
 
                     case "spades":
-                        if (this.amtSpades === 0) {
-                            this.legalCheck = true;
+                        if (amts.spades === 0) {
+                            legalCheck = true;
                         } else {
-                            this.legalCheck = false;
+                            legalCheck = false;
                         }
                         break;
 
                     case "diamonds":
-                        if (this.amtDiamonds === 0) {
-                            this.legalCheck = true;
+                        if (amts.diamonds === 0) {
+                            legalCheck = true;
                         } else {
-                            this.legalCheck = false;
+                            legalCheck = false;
                         }
                         break;
                     default:
-                        this.legalCheck = true;
+                        legalCheck = true;
                 }
 
             }
@@ -452,7 +454,7 @@ var allPlayers = function(deck) {
 
         /* if user isn't first to play, check to see if it's a legal play */
         if (Trump.Rounds.suitOnBoard) {
-            this.setLegalCheck();
+            setLegalCheck();
         }
 
         /*
@@ -469,7 +471,7 @@ var allPlayers = function(deck) {
 
             /* @todo: legalPlayCheck */
 
-            if (!this.legalCheck) {
+            if (!legalCheck) {
                 alert("Hey don't try to cheat! If you have cards in the suit that is currently on board, you have to play them!");
 
             } else {
@@ -482,7 +484,7 @@ var allPlayers = function(deck) {
                 for ( var i = 0; i < c.length; i++) {
                     for ( var j = 0; j < c[i].length; j++) {
                         if (c[i][j].fileName === fileName) {
-                            this.playedCard = c[i][j];
+                            playedCard = c[i][j];
                             c[i].splice(j, 1);
                             foundCardMatch = true;
                             break;
@@ -494,7 +496,7 @@ var allPlayers = function(deck) {
                     }
                 }
 
-                Trump.Rounds.compareCardsPlayed(this.playedCard, this.southPlayer);// compare card to other cards on
+                Trump.Rounds.compareCardsPlayed(playedCard, this.southPlayer);// compare card to other cards on
                 // board
                 Trump.Rounds.setCardsPlayed();// increment the amount of cards
                 // played in current round

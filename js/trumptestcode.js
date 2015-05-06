@@ -5,6 +5,14 @@
  */
 
 /**
+ * Constants
+ */
+var CLUBS = 'clubs';
+var SPADES = 'spades';
+var HEARTS = 'hearts';
+var DIAMONDS = 'diamonds';
+
+/**
  * Card object
  */
 var Card = function(value, suit) {
@@ -26,10 +34,10 @@ var Deck = function() {
 
     this.initDeck = function() {
         for ( var i = 0; i < 13; i++) {
-            this.cards[i] = new Card(i + 2, "hearts");
-            this.cards[i + 13] = new Card(i + 2, "clubs");
-            this.cards[i + 26] = new Card(i + 2, "diamonds");
-            this.cards[i + 39] = new Card(i + 2, "spades");
+            this.cards[i] = new Card(i + 2, HEARTS);
+            this.cards[i + 13] = new Card(i + 2, CLUBS);
+            this.cards[i + 26] = new Card(i + 2, DIAMONDS);
+            this.cards[i + 39] = new Card(i + 2, SPADES);
         }
     };
 
@@ -183,31 +191,31 @@ var allPlayers = function(deck) {
         // SuitArray
         var checkSuit = function(suit) {
             switch (suit) {
-                case "clubs":
+                case CLUBS:
                     if (amts.clubs > 0) {
                         suitArray = player.handClubs;
-                        suitInPlay = "clubs";
+                        suitInPlay = CLUBS;
                     }
                     break;
 
-                case "hearts":
+                case HEARTS:
                     if (amts.hearts > 0) {
                         suitArray = player.handHearts;
-                        suitInPlay = "hearts";
+                        suitInPlay = HEARTS;
                     }
                     break;
 
-                case "spades":
+                case SPADES:
                     if (amts.spades > 0) {
                         suitArray = player.handSpades;
-                        suitInPlay = "spades";
+                        suitInPlay = SPADES;
                     }
                     break;
 
-                case "diamonds":
+                case DIAMONDS:
                     if (amts.diamonds > 0) {
                         suitArray = player.handDiamonds;
-                        suitInPlay = "diamonds";
+                        suitInPlay = DIAMONDS;
                     }
                     break;
 
@@ -271,52 +279,52 @@ var allPlayers = function(deck) {
             switch (r) {
                 case 1:
                     if (amts.clubs > 0) {
-                        suit = "clubs";
+                        suit = CLUBS;
                     } else if (amts.spades > 0) {
-                        suit = "spades";
+                        suit = SPADES;
                     } else if (amts.diamonds > 0) {
-                        suit = "diamonds";
+                        suit = DIAMONDS;
                     } else if (amts.hearts > 0) {
-                        suit = "hearts";
+                        suit = HEARTS;
                     }
 
                     break;
 
                 case 2:
                     if (amts.hearts > 0) {
-                        suit = "hearts";
+                        suit = HEARTS;
                     } else if (amts.clubs > 0) {
-                        suit = "clubs";
+                        suit = CLUBS;
                     } else if (amts.diamonds > 0) {
-                        suit = "diamonds";
+                        suit = DIAMONDS;
                     } else if (amts.spades > 0) {
-                        suit = "spades";
+                        suit = SPADES;
                     }
 
                     break;
 
                 case 3:
                     if (amts.diamonds > 0) {
-                        suit = "diamonds";
+                        suit = DIAMONDS;
                     } else if (amts.clubs > 0) {
-                        suit = "clubs";
+                        suit = CLUBS;
                     } else if (amts.spades > 0) {
-                        suit = "spades";
+                        suit = SPADES;
                     } else if (amts.hearts > 0) {
-                        suit = "hearts";
+                        suit = HEARTS;
                     }
 
                     // @todo -- why is there not a break here?
 
                 case 4:
                     if (amts.spades > 0) {
-                        suit = "spades";
+                        suit = SPADES;
                     } else if (amts.clubs > 0) {
-                        suit = "clubs";
+                        suit = CLUBS;
                     } else if (amts.diamonds > 0) {
-                        suit = "diamonds";
+                        suit = DIAMONDS;
                     } else if (amts.hearts > 0) {
-                        suit = "hearts";
+                        suit = HEARTS;
                     }
 
                     break;
@@ -350,11 +358,11 @@ var allPlayers = function(deck) {
             if (suitInPlay === Trump.Rounds.suitOnBoard && !Trump.Rounds.suitWasCut) {
                 SmartPickCard();
 
-            // I have the suit on board, but someone has cut
+                // I have the suit on board, but someone has cut
             } else if (suitInPlay === Trump.Rounds.suitOnBoard && Trump.Rounds.suitWasCut) {
                 pickLowCard();
 
-            // I don't have the suit on board, and no one has cut yet
+                // I don't have the suit on board, and no one has cut yet
             } else if (suitInPlay != Trump.Rounds.suitOnBoard && !Trump.Rounds.suitWasCut) {
                 if (Trump.Rounds.tempWinningPlayer.team != player.team) {
                     checkSuit(Trump.trump);
@@ -369,7 +377,7 @@ var allPlayers = function(deck) {
                     pickLowCard();
                 }
 
-            // I don't have the suit on board, and someone else has cut
+                // I don't have the suit on board, and someone else has cut
             } else if (suitInPlay != Trump.Rounds.suitOnBoard && Trump.Rounds.suitWasCut) {
                 checkSuit(Trump.trump);
                 if (suitInPlay === Trump.trump && suitArray[0].value > Trump.Rounds.tempWinningCard.value) {
@@ -414,7 +422,7 @@ var allPlayers = function(deck) {
             if (suit != Trump.Rounds.suitOnBoard) {
 
                 switch (Trump.Rounds.suitOnBoard) {
-                    case "clubs":
+                    case CLUBS:
                         if (amts.clubs === 0) {
                             legalCheck = true;
                         } else {
@@ -422,7 +430,7 @@ var allPlayers = function(deck) {
                         }
                         break;
 
-                    case "hearts":
+                    case HEARTS:
                         if (amts.hearts === 0) {
                             legalCheck = true;
                         } else {
@@ -430,7 +438,7 @@ var allPlayers = function(deck) {
                         }
                         break;
 
-                    case "spades":
+                    case SPADES:
                         if (amts.spades === 0) {
                             legalCheck = true;
                         } else {
@@ -438,7 +446,7 @@ var allPlayers = function(deck) {
                         }
                         break;
 
-                    case "diamonds":
+                    case DIAMONDS:
                         if (amts.diamonds === 0) {
                             legalCheck = true;
                         } else {

@@ -485,7 +485,8 @@ var allPlayers = function(deck) {
                 alert("Hey don't try to cheat! If you have cards in the suit that is currently on board, you have to play them!");
 
             } else {
-                $(card).hide();
+                $(card).addClass('played');
+
                 $('#board').append(
                         '<div id="south-card" class="board-card"><img class="card-image" src="img/cardpack1/'
                                 + fileName + '"/></div>');
@@ -724,7 +725,7 @@ var TrumpGame = function() {
 
             var self = this;
             setTimeout(function() {
-                $('.board-card').fadeOut("slow");
+                $('.board-card').fadeOut();
                 $('#my-books').text(self.playerBooks);
             }, 1000);
 
@@ -738,7 +739,7 @@ var TrumpGame = function() {
 
             var self = this;
             setTimeout(function() {
-                $('.board-card').fadeOut("slow");
+                $('.board-card').fadeOut();
                 $('#opponents-books').text(self.opponentsBooks);
             }, 1000);
 

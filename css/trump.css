@@ -73,6 +73,23 @@ h1,h2,h3,h4 {
 }
 
 /* Game Over -Overlay */
+#trump-gameover {
+
+}
+
+#reset-game {
+    font-family: 'Covered By Your Grace', Arial, cursive;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 30px;
+    background-color: #E0EFF1;
+    color: #42414F;
+    margin-top: 30px;
+}
+
+#reset-game:hover {
+    background-color: #c7dbdd;
+}
 
 /* Structure */
 #game-wrapper {
@@ -189,9 +206,10 @@ h1,h2,h3,h4 {
 .card-space {
     box-sizing: border-box;
     width: 100%;
-    padding: 10px 80px 10px 80px;
+    padding: 26px 80px 10px 80px;
     clear: both;
     min-height: 260px;
+    text-align: center;
 }
 
 /* Elements */
@@ -211,7 +229,6 @@ h1,h2,h3,h4 {
     height: 180px;
     top: 0;
     left: 0;
-
     transition: top 200ms ease-in-out 100ms;
 }
 
@@ -231,10 +248,21 @@ h1,h2,h3,h4 {
 }
 
 .playable:hover .card-image {
-    /* z-index: 20; */
     border-bottom: 3px solid #ffaf0f;
     top: -40px;
     cursor: pointer;
+}
+
+.card-space .card {
+    float: none;
+    display: inline-block;
+    transition: opacity 200ms ease-in, width 200ms ease-in;
+}
+
+.card-space .card.played {
+    opacity: 0;
+    width: 0;
+
 }
 
 /* Text styling */
@@ -318,106 +346,91 @@ h1,h2,h3,h4 {
 }
 
 /*test animations*/
-@
-keyframes slide-in-left {
-    from {opacity: 0.5;
-    left: 0px;
-    transform: rotate(-60deg);
+@keyframes slide-in-left {
+    from {
+        opacity: 0.5;
+        left: 0px;
+        transform: rotate(-60deg);
+    }
+
+    to {
+        opacity: 1;
+        left: 190px;
+        transform: rotate(-90deg)
+    }
 }
 
-to {
-    opacity: 1;
-    left: 190px;
-    transform: rotate(-90deg)
+@-webkit-keyframes slide-in-left {
+    from {
+        opacity: 0.5;
+        left: 0px;
+        transform: rotate(-60deg);
+    }
+
+    to {
+        opacity: 1;
+        left: 190px;
+        transform: rotate(-90deg)
+    }
 }
 
-}
-@
--webkit-keyframes slide-in-left {
-    from {opacity: 0.5;
-    left: 0px;
-    transform: rotate(-60deg);
+@keyframes slide-in-right {
+    from {
+        opacity: 0.5;
+        right: 100px;
+        transform: rotate(120deg);
+    }
+
+    to {
+        opacity: 1;
+        right: 190px;
+        transform: rotate(90deg);
+    }
 }
 
-to {
-    opacity: 1;
-    left: 190px;
-    transform: rotate(-90deg)
+@-webkit-keyframes slide-in-right {
+    from {
+        opacity: 0.5;
+        right: 100px;
+        transform: rotate(120deg);
+    }
+
+    to {
+        opacity: 1;
+        right: 190px;
+        transform: rotate(90deg);
+    }
 }
 
-}
-@
-keyframes slide-in-right {
-    from {opacity: 0.5;
-    right: 100px;
-    transform: rotate(120deg);
+@keyframes spin-in-bottom {
+    from {
+        opacity: 0.5;
+        top: 80px;
+        transform: rotate(20deg);
+    }
+
+    to {
+        opacity: 1;
+        top: 60px;
+        transform: rotate(0deg);
+    }
 }
 
-to {
-    opacity: 1;
-    right: 190px;
-    transform: rotate(90deg);
+@-webkit-keyframes spin-in-bottom {
+    from {
+        opacity: 0.5;
+        top: 80px;
+        transform: rotate(20deg);
+    }
+
+    to {
+        opacity: 1;
+        top: 60px;
+        transform: rotate(0deg);
+    }
 }
 
-}
-@
--webkit-keyframes slide-in-right {
-    from {opacity: 0.5;
-    right: 100px;
-    transform: rotate(120deg);
-}
-
-to {
-    opacity: 1;
-    right: 190px;
-    transform: rotate(90deg);
-}
-
-}
-@
-keyframes spin-in-bottom {
-    from {opacity: 0.5;
-    top: 80px;
-    transform: rotate(20deg);
-}
-
-to {
-    opacity: 1;
-    top: 60px;
-    transform: rotate(0deg);
-}
-
-}
-@
--webkit-keyframes spin-in-bottom {
-    from {opacity: 0.5;
-    top: 80px;
-    transform: rotate(20deg);
-}
-
-to {
-    opacity: 1;
-    top: 60px;
-    transform: rotate(0deg);
-}
-
-}
-@
-keyframes spin-in-top {
-    from {opacity: 0.5;
-    top: -20px;
-    transform: rotate(-20deg);
-}
-
-to {
-    opacity: 1;
-    top: 0px;
-    transform: rotate(0deg);
-}
-
-}
-@
--webkit-keyframes spin-in-top {
+@keyframes spin-in-top {
     from {opacity: 0.5;
     top: -20px;
     transform: rotate(-20deg);
@@ -430,112 +443,47 @@ to {
 }
 
 }
-@
-keyframes numIncrement { 0%{
-    color: red;
-    top: 20px;
+@-webkit-keyframes spin-in-top {
+    from {opacity: 0.5;
+    top: -20px;
+    transform: rotate(-20deg);
 }
 
-50%{
-color
-
-
-:red
-
-
-
-;
-top
-
-
-:
-
-
--10
-px
-;
-
-
-}
-100%{
-color
-
-
-:
-
-
-#1ab999
-
-
-
-;
-top
-
-
-:
-
-
-
-2
-px
-
-
-;
-}
-}
-@
--webkit-keyframes numIncrement { 0%{
-    color: red;
-    top: 20px;
-}
-50%{
-color
-
-
-:red
-
-
-
-;
-top
-
-
-:
-
-
--10
-px
-;
-
-
-}
-100%{
-color
-
-
-:
-
-
-#1ab999
-
-
-
-;
-top
-
-
-:
-
-
-
-2
-px
-
-
-;
-}
+to {
+    opacity: 1;
+    top: 0px;
+    transform: rotate(0deg);
 }
 
-/*position: relative;*/
-/*top: 2px;*/
-/*padding: 0 10px;*/
+}
+
+@keyframes numIncrement {
+    0%{
+        color: red;
+        top: 20px;
+    }
+
+    50%{
+        color: red;
+        top: -10px;
+    }
+    100%{
+        color: #1ab999;
+        top: 2px;
+    }
+}
+
+@-webkit-keyframes numIncrement {
+    0%{
+        color: red;
+        top: 20px;
+    }
+    50%{
+        color: red;
+        top: -10px;
+    }
+    100%{
+        color: #1ab999;
+        top: 2px;
+    }
+}

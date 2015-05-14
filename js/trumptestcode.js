@@ -133,6 +133,8 @@ var Player = function(deck, hand, position, isHuman) {
     /* show five cards to user to pick trump from */
     this.showFive = function() {
         var $firstFive = $('#first-five-cards');
+        $firstFive.empty();
+
         for ( var i = 0; i < 5; i++) {
             $firstFive.append('<div class="card">' + '    <img class="card-image" src="img/cardpack1/'
                     + this.firstFive[i].fileName + '"/>' + '</div>');
@@ -693,9 +695,8 @@ var playRounds = function(players) {
 };
 
 /**
- * trumpGame Object
+ * TrumpGame Object
  */
-
 var TrumpGame = function() {
     this.trump = "";
     this.deck = new Deck;
@@ -714,7 +715,7 @@ var TrumpGame = function() {
     /* IMPORTANT */
     this.setTrump = function(suit) {
         this.trump = suit;
-        $('.trump-title').append(this.trump);
+        $('.trump-suit').text(this.trump);
     };
 
     this.setPlayerBooks = function(winner) {

@@ -1,4 +1,4 @@
-html, body {
+html,body {
     margin: 0 !important;
     padding: 0 !important;
     background: #e7e7e7;
@@ -8,21 +8,23 @@ html, body {
     font-weight: normal;
 }
 
-h1, h2, h3, h4 { margin: 0; padding: 0;}
-
+h1,h2,h3,h4 {
+    margin: 0;
+    padding: 0;
+}
 
 /* Overlay */
-#overlay{
+#overlay {
     z-index: 5;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(300,300,300, 0.9)
+    background: rgba(300, 300, 300, 0.9)
 }
 
-.trump-prompt{
+.trump-prompt {
     position: relative;
     padding: 20px;
     margin: 100px auto 0 auto;
@@ -30,14 +32,14 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     text-align: center;
 }
 
-.trump-prompt h1{
+.trump-prompt h1 {
     font-size: 3em;
     text-align: center;
     font-weight: normal;
-    font-family: 'Covered By Your Grace',Arial, cursive;
+    font-family: 'Covered By Your Grace', Arial, cursive;
 }
 
-.trump-prompt a{
+.trump-prompt a {
     display: block;
     clear: both;
     padding: 30px 0;
@@ -45,13 +47,13 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     font-size: 1.2em;
 }
 
-#first-five-cards{
+#first-five-cards {
     position: relative;
     width: 400px;
     margin: 20px 70px;
 }
 
-.trump-select-box{
+.trump-select-box {
     position: relative;
     display: inline-block;
     margin-top: 20px;
@@ -61,21 +63,36 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     border-bottom: 1px solid #2f2f2f;
     font-size: 1.4em;
     font-weight: normal;
-    font-family: 'Covered By Your Grace',Arial, cursive;
+    font-family: 'Covered By Your Grace', Arial, cursive;
     padding: 10px 0;
 }
 
-.trump-select-box:hover{
-    border-bottom: 2px solid red ;
+.trump-select-box:hover {
+    border-bottom: 2px solid red;
     cursor: pointer;
 }
 
 /* Game Over -Overlay */
+#trump-gameover {
 
+}
 
+#reset-game {
+    font-family: 'Covered By Your Grace', Arial, cursive;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 30px;
+    background-color: #E0EFF1;
+    color: #42414F;
+    margin-top: 30px;
+}
+
+#reset-game:hover {
+    background-color: #c7dbdd;
+}
 
 /* Structure */
-#game-wrapper{
+#game-wrapper {
     position: relative;
     box-sizing: border-box;
     width: 1000px;
@@ -83,7 +100,7 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     background: #e7e7e7;
 }
 
-#score-space{
+#score-space {
     box-sizing: border-box;
     width: 100%;
     margin: 0;
@@ -93,7 +110,7 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     font-family: 'Covered By Your Grace', cursive;
 }
 
-#north-player{
+#north-player {
     position: relative;
     box-sizing: border-box;
     margin: 20px auto;
@@ -104,8 +121,7 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     overflow: hidden;
 }
 
-
-#west-player{
+#west-player {
     position: relative;
     box-sizing: border-box;
     margin: 50px 40px 0 40px;
@@ -117,7 +133,7 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     float: left;
 }
 
-#east-player{
+#east-player {
     position: relative;
     box-sizing: border-box;
     margin: 50px 40px 0 40px;
@@ -129,8 +145,7 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     float: right;
 }
 
-
-#board{
+#board {
     position: relative;
     box-sizing: border-box;
     margin: 0px 40px;
@@ -139,7 +154,7 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     float: left;
 }
 
-.board-card{
+.board-card {
     box-sizing: border-box;
     position: absolute;
     width: 120px;
@@ -147,23 +162,23 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     z-index: 2;
 }
 
-#north-card{
+#north-card {
     position: absolute;
-    left:240px;
+    left: 240px;
     top: 0px;
     animation: spin-in-top 0.3s ease-out;
     -webkit-animation: spin-in-top 0.3s ease-out;
 }
 
-#south-card{
+#south-card {
     position: absolute;
-    left:240px;
+    left: 240px;
     top: 60px;
     animation: spin-in-bottom 0.3s ease-out;
     -webkit-animation: spin-in-bottom 0.3s ease-out;
 }
 
-#east-card{
+#east-card {
     transform: rotate(90deg);
     position: absolute;
     right: 190px;
@@ -172,7 +187,7 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     -webkit-animation: slide-in-right 0.5s ease-out;
 }
 
-#west-card{
+#west-card {
     -ms-transform: rotate(-90deg); /* IE 9 */
     -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
     transform: rotate(-90deg);
@@ -183,23 +198,22 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     -webkit-animation: slide-in-left 0.5s ease-out;
 }
 
-
-
-.player-turn-indicator{
+.player-turn-indicator {
     border-radius: 60px;
     border: 4px solid #21ad5f !important;
 }
 
-.card-space{
+.card-space {
     box-sizing: border-box;
     width: 100%;
-    padding: 10px 80px 10px 80px;
+    padding: 26px 80px 10px 80px;
     clear: both;
     min-height: 260px;
+    text-align: center;
 }
 
 /* Elements */
-.card{
+.card {
     box-sizing: border-box;
     position: relative;
     width: 60px;
@@ -207,7 +221,7 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     float: left;
 }
 
-.card-image{
+.card-image {
     box-sizing: border-box;
     display: block;
     position: absolute;
@@ -215,17 +229,17 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     height: 180px;
     top: 0;
     left: 0;
+    transition: top 200ms ease-in-out 100ms;
 }
 
-.card-image-overlay{
-
+.card-image-overlay {
     position: relative;
 }
 
-.card-image-overlay:after{
+.card-image-overlay:after {
     content: "";
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     bottom: 0;
     width: 120px;
@@ -233,21 +247,32 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     opacity: 0.4;
 }
 
-
-.playable:hover .card-image{
-    z-index: 20;
+.playable:hover .card-image {
     border-bottom: 3px solid #ffaf0f;
+    top: -40px;
+    cursor: pointer;
+}
+
+.card-space .card {
+    float: none;
+    display: inline-block;
+    transition: opacity 200ms ease-in, width 200ms ease-in;
+}
+
+.card-space .card.played {
+    opacity: 0;
+    width: 0;
+
 }
 
 /* Text styling */
-
-.trump-title{
+.trump-title {
     font-size: 2em;
     line-height: 30px;
     color: #3d3d3d;
 }
 
-.books-score{
+.books-score {
     margin: 0;
     padding: 0 10px;
     font-size: 1.2em;
@@ -256,7 +281,7 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     color: #3d3d3d;
 }
 
-.books-score > span {
+.books-score>span {
     font-size: 1.8em;
     color: #1ab999;
     position: relative;
@@ -265,17 +290,17 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     display: inline-block;
 }
 
-#my-books{
+#my-books {
     animation: numIncrement 1s ease-out;
     -webkit-animation: numIncrement 1s ease-out;
 }
 
-#opponents-books{
+#opponents-books {
     animation: numIncrement 1s ease-out;
     -webkit-animation: numIncrement 1s ease-out;
 }
 
-.rules-notice{
+.rules-notice {
     width: 800px;
     margin: 20px auto;
     text-align: center;
@@ -283,79 +308,182 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
     font-weight: normal;
 }
 
-
 /* Modifiers */
-.fit-circle { width: 100%; height: 100%;}
-.clear-fix{clear:both;}
-.box{
+.fit-circle {
+    width: 100%;
+    height: 100%;
+}
+
+.clear-fix {
+    clear: both;
+}
+
+.box {
     position: relative;
     float: left;
     width: 25%;
     height: 200px;
 }
-.green{background: greenyellow !important;}
-.blue{background: blue !important;}
-.yellow{background: yellow !important;}
-.grey{background: grey !important;}
-.hide-me{display:none;}
 
+.green {
+    background: greenyellow !important;
+}
 
+.blue {
+    background: blue !important;
+}
+
+.yellow {
+    background: yellow !important;
+}
+
+.grey {
+    background: grey !important;
+}
+
+.hide-me {
+    display: none;
+}
 
 /*test animations*/
-@keyframes slide-in-left{
-    from{opacity:0.5; left: 0px; transform: rotate(-60deg);}
-    to{opacity:1; left: 190px; transform: rotate(-90deg)}
-  }
+@keyframes slide-in-left {
+    from {
+        opacity: 0.5;
+        left: 0px;
+        transform: rotate(-60deg);
+    }
 
-@-webkit-keyframes slide-in-left{
-    from{opacity:0.5; left: 0px; transform: rotate(-60deg);}
-    to{opacity:1; left: 190px; transform: rotate(-90deg)}
+    to {
+        opacity: 1;
+        left: 190px;
+        transform: rotate(-90deg)
+    }
 }
 
-@keyframes slide-in-right{
-    from{opacity:0.5; right: 100px; transform: rotate(120deg);}
-    to{opacity:1; right: 190px; transform: rotate(90deg);}
+@-webkit-keyframes slide-in-left {
+    from {
+        opacity: 0.5;
+        left: 0px;
+        transform: rotate(-60deg);
+    }
+
+    to {
+        opacity: 1;
+        left: 190px;
+        transform: rotate(-90deg)
+    }
 }
 
-@-webkit-keyframes slide-in-right{
-    from{opacity:0.5; right: 100px; transform: rotate(120deg);}
-    to{opacity:1; right: 190px; transform: rotate(90deg);}
+@keyframes slide-in-right {
+    from {
+        opacity: 0.5;
+        right: 100px;
+        transform: rotate(120deg);
+    }
+
+    to {
+        opacity: 1;
+        right: 190px;
+        transform: rotate(90deg);
+    }
 }
 
+@-webkit-keyframes slide-in-right {
+    from {
+        opacity: 0.5;
+        right: 100px;
+        transform: rotate(120deg);
+    }
 
-@keyframes spin-in-bottom{
-    from{opacity:0.5; top: 80px; transform: rotate(20deg); }
-    to{opacity:1; top: 60px; transform: rotate(0deg);}
+    to {
+        opacity: 1;
+        right: 190px;
+        transform: rotate(90deg);
+    }
 }
 
+@keyframes spin-in-bottom {
+    from {
+        opacity: 0.5;
+        top: 80px;
+        transform: rotate(20deg);
+    }
 
-@-webkit-keyframes spin-in-bottom{
-    from{opacity:0.5; top: 80px; transform: rotate(20deg); }
-    to{opacity:1; top: 60px; transform: rotate(0deg);}
+    to {
+        opacity: 1;
+        top: 60px;
+        transform: rotate(0deg);
+    }
 }
 
-@keyframes spin-in-top{
-    from{opacity:0.5; top: -20px; transform: rotate(-20deg); }
-    to{opacity:1; top: 0px; transform: rotate(0deg);}
-}
-@-webkit-keyframes spin-in-top{
-    from{opacity:0.5; top: -20px; transform: rotate(-20deg); }
-    to{opacity:1; top: 0px; transform: rotate(0deg);}
-}
+@-webkit-keyframes spin-in-bottom {
+    from {
+        opacity: 0.5;
+        top: 80px;
+        transform: rotate(20deg);
+    }
 
-
-@keyframes numIncrement{
-    0%{color:red ; top: 20px;}
-    50%{color:red ; top:-10px;}
-    100%{color:#1ab999 ; top: 2px;}
+    to {
+        opacity: 1;
+        top: 60px;
+        transform: rotate(0deg);
+    }
 }
 
-@-webkit-keyframes numIncrement{
-    0%{color:red ; top: 20px;}
-    50%{color:red ; top:-10px;}
-    100%{color:#1ab999 ; top: 2px;}
+@keyframes spin-in-top {
+    from {opacity: 0.5;
+    top: -20px;
+    transform: rotate(-20deg);
 }
 
-/*position: relative;*/
-/*top: 2px;*/
-/*padding: 0 10px;*/
+to {
+    opacity: 1;
+    top: 0px;
+    transform: rotate(0deg);
+}
+
+}
+@-webkit-keyframes spin-in-top {
+    from {opacity: 0.5;
+    top: -20px;
+    transform: rotate(-20deg);
+}
+
+to {
+    opacity: 1;
+    top: 0px;
+    transform: rotate(0deg);
+}
+
+}
+
+@keyframes numIncrement {
+    0%{
+        color: red;
+        top: 20px;
+    }
+
+    50%{
+        color: red;
+        top: -10px;
+    }
+    100%{
+        color: #1ab999;
+        top: 2px;
+    }
+}
+
+@-webkit-keyframes numIncrement {
+    0%{
+        color: red;
+        top: 20px;
+    }
+    50%{
+        color: red;
+        top: -10px;
+    }
+    100%{
+        color: #1ab999;
+        top: 2px;
+    }
+}

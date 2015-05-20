@@ -44,7 +44,8 @@ $(document).ready(function() {
     // Trump.Players.showUserHand(Trump.Players.westPlayer);
 
     $('#south-player-hand').on('click', '.playable:not(.played)', function(evt) {
-        var $element = $(evt.target),
+        var $this = $(this),
+            $element = $this.find('img.card-image'),
             value = $element.attr('value'),
             suit = $element.attr('alt');
 

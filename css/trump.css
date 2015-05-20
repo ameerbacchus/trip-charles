@@ -247,10 +247,13 @@ h1,h2,h3,h4 {
     opacity: 0.4;
 }
 
+.playable:hover {
+    cursor: pointer;
+}
+
 .playable:hover .card-image {
     border-bottom: 3px solid #ffaf0f;
     top: -40px;
-    cursor: pointer;
 }
 
 .card-space .card {

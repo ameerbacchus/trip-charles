@@ -1,0 +1,5 @@
+This file simply confirms that the correct branch is being utilized for commits.
+
+DEV 1-1 prioritizes a minimal viable product. 
+
+Please update file with major updates.

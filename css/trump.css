@@ -528,15 +528,17 @@ p {
     display: inline-block;
 }
 
-#my-books span{
+
+.player-increment {
     animation: numIncrement 1s ease-out;
     -webkit-animation: numIncrement 1s ease-out;
 }
 
-#opponents-books span{
+.opponents-increment {
     animation: numIncrement 1s ease-out;
     -webkit-animation: numIncrement 1s ease-out;
 }
+
 
 .rules-notice {
     width: 800px;

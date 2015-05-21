@@ -726,7 +726,9 @@ var TrumpGame = function() {
             var self = this;
             setTimeout(function() {
                 $('.board-card').fadeOut();
+                $('.player-increment').toggle();
                 $('#my-books').text(self.playerBooks);
+                $('.player-increment').toggle();
             }, 1000);
 
             if (this.playerBooks === 7) {
@@ -740,7 +742,9 @@ var TrumpGame = function() {
             var self = this;
             setTimeout(function() {
                 $('.board-card').fadeOut();
+                $('.opponents-increment').toggle();
                 $('#opponents-books').text(self.opponentsBooks);
+                $('.opponents-increment').toggle();
             }, 1000);
 
             if (this.opponentsBooks === 7) {

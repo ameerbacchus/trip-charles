@@ -13,6 +13,11 @@ h1,h2,h3,h4 {
     padding: 0;
 }
 
+
+
+.lt-blue{background-color: #d8e9ea !important;}
+.lt-yellow{background-color: #f4f4c3 !important;}
+
 /* Overlay */
 #overlay {
     z-index: 5;
@@ -21,22 +26,24 @@ h1,h2,h3,h4 {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(300, 300, 300, 0.9)
+    background: rgba(300, 300, 300, 0.9);
+    text-align: center;
 }
 
 .trump-prompt {
     position: relative;
     padding: 20px;
-    margin: 100px auto 0 auto;
+    margin: 20px auto 0 auto;
     width: 500px;
     text-align: center;
 }
 
 .trump-prompt h1 {
-    font-size: 3em;
+    font-size: 2em;
     text-align: center;
     font-weight: normal;
     font-family: 'Covered By Your Grace', Arial, cursive;
+    margin: 20px auto;
 }
 
 .trump-prompt a {
@@ -57,20 +64,49 @@ h1,h2,h3,h4 {
     position: relative;
     display: inline-block;
     margin-top: 20px;
-    width: 90px;
+    width: 120px;
     color: #2f2f2f;
-    background: #e7e7e7;
-    border-bottom: 1px solid #2f2f2f;
+    background: #d8e9ea;
+    border-bottom: 2px solid #d8e9ea;
+    box-sizing: border-box;
     font-size: 1.4em;
     font-weight: normal;
     font-family: 'Covered By Your Grace', Arial, cursive;
-    padding: 10px 0;
+    padding: 10px 0 10px 40px;
+    text-align: left;
 }
 
 .trump-select-box:hover {
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid #7db4b5;
     cursor: pointer;
 }
+
+
+#spades{
+    background: #d8e9ea url("../img/spades-icon.png") no-repeat;
+    background-position: left center;
+    background-size: 40px;
+}
+
+#diamonds{
+    background: #d8e9ea url("../img/diamonds-icon.png") no-repeat;
+    background-position: left center;
+    background-size: 40px;
+}
+
+#clubs{
+    background: #d8e9ea url("../img/clubs-icon.png") no-repeat;
+    background-position: left center;
+    background-size: 40px;
+}
+
+#hearts{
+    background: #d8e9ea url("../img/hearts-icon.png") no-repeat;
+    background-position: left center;
+    background-size: 40px;
+}
+
+
 
 /* Game Over -Overlay */
 #trump-gameover {
@@ -212,7 +248,46 @@ h1,h2,h3,h4 {
     text-align: center;
 }
 
+
+section{
+    background-color: #f5f5f5;
+    padding: 80px 0;
+    width: 100%;
+}
+
+.rules-wrapper{
+    padding-bottom: 140px;
+    width: 900px;
+    margin: 0 auto;
+}
+
+
+.top-wrapper{
+    text-align: center;
+    width: 900px;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.leftColumn{
+    padding-right: 40%;
+}
+
+
+.rightColumn{
+    padding-left: 40%;
+}
+
+
+
+
 /* Elements */
+.sevenhands-logo{
+    margin: 20px auto;
+    width: 240px;
+}
+
+
 .card {
     box-sizing: border-box;
     position: relative;
@@ -268,7 +343,92 @@ h1,h2,h3,h4 {
 
 }
 
+
+#center-blurb{
+    text-align: center;
+    padding: 0 180px;
+    margin: 20px auto;
+    background: url("../img/bhaggieExplains.png") no-repeat;
+    background-size: contain;
+    background-position: right bottom;
+}
+
+#play-btn{
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    padding: 10px 20px;
+    background: cornflowerblue;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#play-btn:hover{
+    background: cadetblue;
+}
+
+#donate-btn{
+    display: block;
+    width: 280px;
+    margin: 20px auto;
+    padding: 20px 20px;
+    background-color: #42414f;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+#donate-btn:hover{
+    background-color: rosybrown;
+}
+
+#teamwork{
+    background: url("../img/mattThumbsUp.png") no-repeat;
+    background-size: 20%;
+    background-position: left center;
+}
+
+
+footer{
+    padding: 80px 0;
+    margin: 0;
+    text-align: center;
+    background: #f5f5f5;
+    border-top: 2px solid #cccccc;
+}
+
+footer p{
+    width: 44%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+footer img{
+    width: 200px;
+    margin: 20px auto;
+}
+
 /* Text styling */
+
+h2 {
+    color: #404040;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 2.8em;
+    line-height: 1.6em;
+}
+
+
+p {
+    color: #404040;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.4em;
+    line-height: 1.6em;
+}
+
+
 .trump-title {
     font-size: 2em;
     line-height: 30px;

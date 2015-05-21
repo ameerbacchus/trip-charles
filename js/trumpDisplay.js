@@ -6,6 +6,10 @@
  */
 
 $(document).ready(function() {
+    if ($.browser.mobile) {
+        $(document.body).addClass('mobile');
+    }
+
     var $elements = {
         overlay: $('#overlay'),
         trumpPicker: $('#trump-picker'),
@@ -18,7 +22,11 @@ $(document).ready(function() {
      * IMPORTANT Code below commented out for development purposes. It's annoying to have to pick trump every time you
      * reload. Trump at this time is set in advance.
      */
+
+    $elements.overlay.css({'height':($(document).height())});
+
     Trump.Players.southPlayer.showFive();
+
 
     $('.trump-select-box').click(function(evt) {
         var $element = $(evt.target);
@@ -44,7 +52,8 @@ $(document).ready(function() {
     // Trump.Players.showUserHand(Trump.Players.westPlayer);
 
     $('#south-player-hand').on('click', '.playable:not(.played)', function(evt) {
-        var $element = $(evt.target),
+        var $this = $(this),
+            $element = $this.find('img.card-image'),
             value = $element.attr('value'),
             suit = $element.attr('alt');
 

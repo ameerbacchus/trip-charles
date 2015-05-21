@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trump: 7hands</title>
+
+    <link rel="icon" href="img/hps-favicon-01.png">
+    <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Covered+By+Your+Grace' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/trump.css" />
+
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/detectMobile.js"></script>
+    <script type="text/javascript" src="js/trump.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-17084806-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+</head>
+
+<body>
+    <div id="mobile-warning">
+        <strong>WARNING:</strong> It appears you're on a mobile device.  This game isn't quite ready for mobile yet. Play at your own risk.
+    </div>
+
+    <div id="game-wrapper">
+        <div id="score-space">
+            <span class="trump-title">trump = <span class="trump-suit"></span></span>
+            <h4 class="books-score">
+                My Books: <span id="my-books" class="player-increment">0</span>
+            </h4>
+            <h4 class="books-score">
+                Opponents' Books: <span id="opponents-books" class="opponents-increment">0</span>
+            </h4>
+        </div>
+
+        <div id="north-player">
+            <img class="fit-circle" src="img/matt.png" />
+        </div>
+
+        <div id="west-player">
+            <img class="fit-circle" src="img/bhaggie.png" />
+        </div>
+
+        <div id="board"></div>
+
+        <div id="east-player">
+            <img class="fit-circle" src="img/bushhead.png" />
+        </div>
+
+        <div id="south-player-hand" class="card-space">
+            <div class="clear-fix"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>When you support Hot Peppa Sauce you support our comics, and our effort to continue bringing
+            entertainment to West-Indian Americans.</p>
+
+        <a target="_blank" id="donate-btn" href="http://www.gofundme.com/s38gt3k">Buy us a cup of coffee</a>
+
+        <img src="img/HPS_red_vert.png"/>
+    </footer>
+
+
+    <div id="overlay">
+        <img class="sevenhands-logo" alt="7hands logo" src="img/7hands.png"/>
+        <div id="trump-picker" class="trump-prompt">
+
+            <div id="first-five-cards"></div>
+
+            <div class="clear-fix"></div>
+
+            <h1>Based on your first five cards, call trump</h1>
+            <div id="spades" class="trump-select-box">Spades</div>
+            <div id="hearts" class="trump-select-box">Hearts</div>
+            <div id="clubs" class="trump-select-box">Clubs</div>
+            <div id="diamonds" class="trump-select-box">Diamonds</div>
+
+            <a href="trumprules.html"> I need to learn the rules </a>
+        </div>
+
+        <div id="trump-gameover" class="trump-prompt" style="display: none;">
+            <h1 id="game-result">You won</h1>
+            <h2>Thanks for playing.</h2>
+            <a href="#" id="reset-game">Play Again</a>
+        </div>
+    </div>
+
+
+
+
+    <script type="text/javascript" src="js/trumpDisplay.js"></script>
+</body>
+</html>

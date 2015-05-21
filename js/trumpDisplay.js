@@ -6,6 +6,10 @@
  */
 
 $(document).ready(function() {
+    if ($.browser.mobile) {
+        $(document.body).addClass('mobile');
+    }
+
     var $elements = {
         overlay: $('#overlay'),
         trumpPicker: $('#trump-picker'),

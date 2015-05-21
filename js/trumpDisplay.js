@@ -22,7 +22,11 @@ $(document).ready(function() {
      * IMPORTANT Code below commented out for development purposes. It's annoying to have to pick trump every time you
      * reload. Trump at this time is set in advance.
      */
+
+    $elements.overlay.css({'height':($(document).height())});
+
     Trump.Players.southPlayer.showFive();
+
 
     $('.trump-select-box').click(function(evt) {
         var $element = $(evt.target);

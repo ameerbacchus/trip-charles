@@ -38,9 +38,8 @@ body.mobile #mobile-warning {
     z-index: 5;
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
-    right: 0;
+    width: 100%;
     background: rgba(300, 300, 300, 0.9);
     text-align: center;
 }
@@ -87,7 +86,7 @@ body.mobile #mobile-warning {
     font-size: 1.4em;
     font-weight: normal;
     font-family: 'Covered By Your Grace', Arial, cursive;
-    padding: 10px 0 10px 40px;
+    padding: 10px 0 10px 44px;
     text-align: left;
 }
 
@@ -400,10 +399,59 @@ section{
     background-color: rosybrown;
 }
 
-#teamwork{
+#call-trump{
+    background: url("../img/cards.png") no-repeat;
+    background-size: 30%;
+    background-position: left center;
+}
+
+#round-start{
+    background: url("../img/counterClockwise.png") no-repeat;
+    background-size: 16%;
+    background-position: right center;
+}
+
+#play-any-card{
+    background: url("../img/anycard.png") no-repeat;
+    background-size: 20%;
+    background-position: left center;
+}
+
+#card-beats-card{
+    background: url("../img/cardRankbeating.png") no-repeat;
+    background-size: 34%;
+    background-position: right center;
+}
+
+
+#team-work{
     background: url("../img/mattThumbsUp.png") no-repeat;
     background-size: 20%;
     background-position: left center;
+}
+
+#tip-2{
+    background: url("../img/lightbulb.png") no-repeat;
+    background-size: 20%;
+    background-position: left center;
+}
+
+#tip-3{
+    background: url("../img/cutTrump.png") no-repeat;
+    background-size: 20%;
+    background-position: right center;
+}
+
+#tip-4{
+    background: url("../img/bhaggieFrustrated.png") no-repeat;
+    background-size: 20%;
+    background-position: left center;
+}
+
+#tip-5{
+    background: url("../img/walk.png") no-repeat;
+    background-size: 20%;
+    background-position: right center;
 }
 
 

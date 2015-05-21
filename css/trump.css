@@ -259,7 +259,8 @@ body.mobile #mobile-warning {
 .card-space {
     box-sizing: border-box;
     width: 100%;
-    padding: 20px 0;
+    padding-top: 20px;
+    padding-right: 30px;
     clear: both;
     min-height: 260px;
     text-align: center;
@@ -324,9 +325,7 @@ section{
     transition: top 200ms ease-in-out 100ms;
 }
 
-.playable .card-image{
-    left: -30px !important;
-}
+
 
 .card-image-overlay {
     position: relative;
